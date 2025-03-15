@@ -26,9 +26,19 @@ export default function Signup() {
       password:'',
     },
     validationSchema,
-    onSubmit:(values)=> router.push('/login')
+    onSubmit:(values ,{setStatus})=> {
+       try{
+      setStatus({success:"singup successfully" })
+      setTimeout(()=>{router.push('/login') },2000)
+       }catch(error){
+        setStatus({error:"singup failed" })
+       }
 
+    }
   })
+
+  console.log(formik.status);
+  
 
   return (
    <>
@@ -42,6 +52,15 @@ export default function Signup() {
         </h1>
         <h2 className='mb-3'>Sign Up</h2>
         <p className='text-[#7B7A7A] mb-2'>Join us now and enjoy instant</p>
+        {formik.status && formik.status.success && (
+          <p> {formik.status.success}</p>
+        )}
+
+       {formik.status && formik.status.error && (
+          <p> {formik.status.error}</p>
+
+        )}
+
         <form action="" className='text-[#7B7A7A] mt-6' onSubmit={formik.handleSubmit}>
            <div>
              <input 

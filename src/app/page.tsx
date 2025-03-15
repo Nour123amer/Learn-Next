@@ -1,4 +1,5 @@
 import Navbar from "./_Components/Navbar/page"
+import Signup from "./signup/page";
 
 
 
@@ -160,7 +161,9 @@ export default function Home() {
 
   {/* <Navbar /> */}
 
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae delectus numquam dolor odit rerum ullam repellendus recusandae sint! Harum molestiae totam dignissimos quidem, porro sequi vel delectus. Sint, ipsum laboriosam!</p>
+ <div className=" w-full mt-88">
+ <Signup />
+ </div>
     </div>
   );
 }
