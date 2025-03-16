@@ -10,6 +10,7 @@ import Link from 'next/link';
 import axios from 'axios';
 
 
+
 export default function Signup() {
  const router = useRouter();
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
@@ -155,22 +156,27 @@ export default function Signup() {
         <p className=' before:w-[50px] before:h-[1px] before:bg-gray-200 before:absolute before:left-[10%] before:top-[10px] text-center text-[0.8rem] after:w-[50px] after:h-[1px] after:bg-gray-300 after:absolute after:right-[10%] after:top-[10px] '>Or Select Method To Sign Up</p>
         </div>
         <div className='flex gap-2 mt-2 items-center justify-between lg:px-4'>
-            <Link href="" className='   border-2 border-[#005B63]  font-semibold py-2 rounded-md text-[#30313E]'>
+            <Link href="" className='   border-2 border-[#005B63] w-[180px]  font-semibold py-2 rounded-md text-[#30313E]'>
             <button className='text-center flex items-center justify-center w-[150px] gap-2'>
             <img src="https://i.ibb.co/Jw8KhhZ3/bi-facebook.png" alt="" />
             <span> Geogle</span>
             </button>
             </Link >
 
-        <Link href="" className='flex items-center  w-[150px]  border-2 border-[#005B63] justify-center px-10 font-semibold py-2 rounded-md text-[#30313E]'>
+        <Link href="" className='flex items-center  w-[180px]  border-2 border-[#005B63] justify-center px-10 font-semibold py-2 rounded-md text-[#30313E]'>
         <button className='text-center flex items-center justify-center w-[150px] gap-2'>
         <img src="https://i.ibb.co/TMy85Jym/devicon-google.png" alt="" />
             <span>Facebook</span>
             </button>
-        </Link ></div>
+        </Link >
+
+        </div>
+        <p className='text-center text-[#7B7A7A] mt-6'>Already have account? <Link href="" className='text-[#005B63]' >Login</Link> </p>
+   
       </div>
       
-      <div className='sm:col-span-12 lg:col-span-6 bg-[#005B63] flex justify-center items-center'>
+
+      <div className='sm:col-span-12 lg:col-span-6 bg-[#005B63] flex flex-col flex-wrap justify-center items-center'>
 
         <div className='w-[350px] h-[350px] rounded-full bg-gradient-to-br from-[#005B63] via-white/30 to-transparent] relative px-8 py-14'>
          <img className='absolute right-22 top-6' src="https://i.ibb.co/FkyDZ4GL/Subtract.png" alt="" />
@@ -186,8 +192,15 @@ export default function Signup() {
           <img className='absolute left-[37%] bottom-8 w-[28px] h-[28px]' src="https://i.ibb.co/FkyDZ4GL/Subtract.png" alt="" />
         <div className='absolute -right-[34%] top-[12%] w-[300px] h-[321px]'><img src="https://s3-alpha-sig.figma.com/img/c4fc/2613/fb11f5a1c6efdebec576aa2b1b255855?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HWv1rX-M8B0HW6Gc05CzIWIvNNNlzoQsOHgTvfJ-oS7fgyvNhYDP41o6XRx0l8yhrwyUe1mo1OTsoJgnrzwRai2OALjo0VZp6~4CsDViuOTDtnQXSK0oUIgctM7~BDtBUHQwak5Za2kX0BfP~w~BGv2PVZjQoukLfNd9pqZQ4juUj37BYUOtEzY5ZFLV1HSNrf4kYGHUV29vZ-XXlXMB9ShGYn3YizV88-jAXnW0Q~dIZDFG5rgqg6HjUSZvPwPr~cwh4dx0Bz1XJulifGq7Exab8RHfgNvNn4XIILvC9mz5vfWdf~AI8H3TBqpktTij3nbs8TYSgs6ryIVMNVQVaA__" alt="" /></div>
         </div>
+
+        <p className='text-white text-[20px] mt-20 '>Connect with every application.</p>
+        <p className='text-white text-[14px]'>Everything you need in an easily customizable dashboard.</p>
         </div>
-        
+
+      
+
+
+
    </div>
  </div>
    </>
