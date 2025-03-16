@@ -146,7 +146,7 @@ export default function Signup() {
    
 
  
-           <Button type='submit' className='mt-6 bg-[#005B63] text-white w-full'>Button</Button>
+           <Button type='submit' className='mt-6 bg-[#005B63] text-white w-full'>Sign up</Button>
           
 
             
