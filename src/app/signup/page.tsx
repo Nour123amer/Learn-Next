@@ -7,6 +7,7 @@ import { Formik, useFormik } from 'formik';
 import Image from 'next/image';
 import { useRouter } from "next/navigation"; 
 import Link from 'next/link';
+import axios from 'axios';
 
 
 export default function Signup() {
@@ -19,6 +20,9 @@ export default function Signup() {
     password:Yup.string().required('Password is required').matches(passwordRegex,'Password should start with uppercase letter followed by combination of letters and numbers between 8 and 15')
   })
 
+   
+
+
   const formik = useFormik({
     initialValues:{
       name:'',
@@ -26,16 +30,46 @@ export default function Signup() {
       password:'',
     },
     validationSchema,
-    onSubmit:(values ,{setStatus})=> {
+    onSubmit:
+    (values ,{setStatus})=> {
        try{
-      setStatus({success:"singup successfully" })
-      setTimeout(()=>{router.push('/login') },2000)
+        Signup(values);
+      setStatus({success:"singup successful" });
+
        }catch(error){
-        setStatus({error:"singup failed" })
+        // setStatus({error:"singup failed :" })
+        console.log(error);
+        
        }
 
     }
-  })
+  }) 
+  
+  async function Signup(values:any) {
+    try{
+       const options = {
+      url:'http://localhost:4000/auth/signup',
+      method:'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: values,
+     
+    }
+
+  let response = await axios.request(options);
+   let data = response.data;
+
+    if(data.message == 'success'){
+      router.push('/login');
+    
+    }
+
+
+    } catch (error){
+      console.log(error);
+    }
+   
+
+  }
 
   console.log(formik.status);
   
@@ -43,7 +77,7 @@ export default function Signup() {
   return (
    <>
 <div className= 'sm:w-100 sm:m-5 md:w-[90%] lg:w-[66%] md:mx-auto shadow-2xl md:mt-16'>
-   <div className='grid grid-cols-12  mx-auto '>
+   <div className='grid grid-cols-12  mx-auto  '>
 
       <div className='sm:col-span-12 lg:col-span-6 sm:px-4 md:px-8 lg:px-12 py-16'>
         <h1 className='flex items-center gap-3'>
@@ -116,33 +150,44 @@ export default function Signup() {
 
             
         </form>
+
         <div className='mt-3 relative '>
-            <p className=' before:w-[70px] before:h-[1px] before:bg-gray-200 before:absolute before:left-[11%] before:top-[10px] text-center text-[0.8rem] after:w-[70px] after:h-[1px] after:bg-gray-300 after:absolute after:right-[11%] after:top-[10px] '>Or Select Method To Sign Up</p>
+        <p className=' before:w-[50px] before:h-[1px] before:bg-gray-200 before:absolute before:left-[10%] before:top-[10px] text-center text-[0.8rem] after:w-[50px] after:h-[1px] after:bg-gray-300 after:absolute after:right-[10%] after:top-[10px] '>Or Select Method To Sign Up</p>
         </div>
-        <div className='flex gap-6 mt-2 items-center justify-between lg:px-8'>
-            <Link href="" className='text-center flex items-center   w-[49%] gap-2 border-2 border-[#005B63] justify-center font-semibold py-2 rounded-md text-[#30313E]'>
-             <img src="https://i.ibb.co/Jw8KhhZ3/bi-facebook.png" alt="" />
-             <span> Geogle</span>
+        <div className='flex gap-2 mt-2 items-center justify-between lg:px-4'>
+            <Link href="" className='   border-2 border-[#005B63]  font-semibold py-2 rounded-md text-[#30313E]'>
+            <button className='text-center flex items-center justify-center w-[150px] gap-2'>
+            <img src="https://i.ibb.co/Jw8KhhZ3/bi-facebook.png" alt="" />
+            <span> Geogle</span>
+            </button>
             </Link >
 
-        <Link href="" className='flex items-center  w-[49%] gap-2 border-2 border-[#005B63] justify-center px-10 font-semibold py-2 rounded-md text-[#30313E]'>
+        <Link href="" className='flex items-center  w-[150px]  border-2 border-[#005B63] justify-center px-10 font-semibold py-2 rounded-md text-[#30313E]'>
+        <button className='text-center flex items-center justify-center w-[150px] gap-2'>
         <img src="https://i.ibb.co/TMy85Jym/devicon-google.png" alt="" />
             <span>Facebook</span>
+            </button>
         </Link ></div>
       </div>
       
       <div className='sm:col-span-12 lg:col-span-6 bg-[#005B63] flex justify-center items-center'>
 
         <div className='w-[350px] h-[350px] rounded-full bg-gradient-to-br from-[#005B63] via-white/30 to-transparent] relative px-8 py-14'>
-        <div className=' ml-2 mt-4'>
+         <img className='absolute right-22 top-6' src="https://i.ibb.co/FkyDZ4GL/Subtract.png" alt="" />
+        <div className=' ml-2 mt-4 '>
         <p className='text-white bg-[#FFFFFF4D] rounded-full py-2 px-1.5 w-fit text-[12px] mb-4'>
           Ready for faster, closer support ?</p>
           <p className='bg-[#FFFFFF4D] rounded-full h-[15px] w-[150px] mb-3'></p>
           <p className='bg-[#FFFFFF4D] rounded-full h-[15px] w-[120px]'></p>
           </div>
+
+          <img className='absolute left-12 bottom-[33%] ' src="https://i.ibb.co/FkyDZ4GL/Subtract.png" alt="" />
+          <img className='absolute right-[39%] bottom-22 w-[28px] h-[28px]' src="https://i.ibb.co/FkyDZ4GL/Subtract.png" alt="" />
+          <img className='absolute left-[37%] bottom-8 w-[28px] h-[28px]' src="https://i.ibb.co/FkyDZ4GL/Subtract.png" alt="" />
         <div className='absolute -right-[34%] top-[12%] w-[300px] h-[321px]'><img src="https://s3-alpha-sig.figma.com/img/c4fc/2613/fb11f5a1c6efdebec576aa2b1b255855?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HWv1rX-M8B0HW6Gc05CzIWIvNNNlzoQsOHgTvfJ-oS7fgyvNhYDP41o6XRx0l8yhrwyUe1mo1OTsoJgnrzwRai2OALjo0VZp6~4CsDViuOTDtnQXSK0oUIgctM7~BDtBUHQwak5Za2kX0BfP~w~BGv2PVZjQoukLfNd9pqZQ4juUj37BYUOtEzY5ZFLV1HSNrf4kYGHUV29vZ-XXlXMB9ShGYn3YizV88-jAXnW0Q~dIZDFG5rgqg6HjUSZvPwPr~cwh4dx0Bz1XJulifGq7Exab8RHfgNvNn4XIILvC9mz5vfWdf~AI8H3TBqpktTij3nbs8TYSgs6ryIVMNVQVaA__" alt="" /></div>
         </div>
         </div>
+        
    </div>
  </div>
    </>
